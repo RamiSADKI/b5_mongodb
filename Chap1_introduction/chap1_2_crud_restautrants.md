@@ -203,7 +203,7 @@ Cet opérateur est similaire à l'opérateur IN de SQL.
 db.restaurants.find( { "borough" : "Brooklyn", "cuisine" : "Hamburgers" } )
 
 // De manière équivalente
-db.restaurants.find( { $and : [ { "borough" : "Brookyn"}, { "cuisine" : "Hamburgers" } ] } )
+db.restaurants.find( { $and : [ { "borough" : "Brooklyn"}, { "cuisine" : "Hamburgers" } ] } )
 
 ```
 
