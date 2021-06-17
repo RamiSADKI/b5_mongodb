@@ -227,6 +227,42 @@ db.restaurants.find( {
 
 ```
 
+## Exercice 
+
+Trouvez tous les restaurants dont le nom contient un s, sans casse.
+
+```js
+
+db.restaurants.find( { name : /s/ }, { name : 1})
+// l'option i désigne insensible à la casse
+db.restaurants.find( { name : /s/i }, { name : 1})
+
+db.restaurants.find( { name : /S/ }, { name : 1})
+
+db.restaurants.find( { name : /S{1}/ }, { name : 1})
+
+```
+
+Tous les restaurants qui commence par un R majuscule et se termine par un s minuscule.
+
+```js
+db.restaurants.find( { name : /^R.*s$/ }, { name : 1})
+/*
+. n'importe quel caractère
+* de 0 à N 
+^ commence par 
+$ se termine par
+*/
+```
+
+Tous les restaurants se terminant par s :
+
+```js
+db.restaurants.find( { name : /s$/ }, { name : 1})
+
+
+```
+
 Cela correspondrait (...) en SQL à la requête suivante :
 
 ```sql
@@ -264,12 +300,13 @@ Pour itérer sur une requête vous utiliserez l'une des deux syntaxes suivantes 
 
 ```js
 // 1
-db.collection.find().forEach(doc => print(tojson(doc)))
+db.collection.find({ query }).forEach(doc => print(tojson(doc)))
 
 // 2
-const myCursor = db.users.find( restriction );
+const myCursor = db.users.find( query );
+
 while (myCursor.hasNext()) {
-   print(tojson(myCursor.next()));
+   print(tojson(myCursor.next())); // pour passer au document suivant
 }
 ```
 
